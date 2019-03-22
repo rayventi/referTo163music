@@ -1,0 +1,27 @@
+<view class="container">
+  <view class='title'>推荐歌单</view>
+  <view class='rec-sheet-list'>
+    <navigator class='rec-sheet' wx:for="{{recList}}" wx:key="album" url='../list/index?listId={{item.index}}'>
+      <image src="{{item.cover}}" mode='widthFix'></image>
+      <view class='rec-num'>{{item.id.length}}万</view>
+      <view class='rec-tit'>{{item.album}}</view>
+    </navigator>
+  </view>
+  <view class='title'>最新音乐</view>
+  <view class='music-list'>
+    <navigator class='music-item' wx:for="{{recMusic}}" wx:if="{{index<10}}" url='../play/index?musicId={{item.id}}' wx:key="id">
+      <view class='music-info'>
+        <view class='music-tit'>{{item.name}}</view>
+        <view class='music-author'>{{item.artist}}</view>
+      </view>
+      <image src='../../images/play-btn.png' mode='scaleToFill' class='play-btn'></image>
+    </navigator>
+  </view>
+  <view class='rec-bottom'>
+    <view class='rec-bottom-wrap'>
+      <view class='rec-bottom-logo'></view>
+      <view class='rec-bottom-more'>更多精彩，尽在网易云音乐app</view>
+      <view class='rec-bottom-copyright'>网易公司版权所有©1997-2018 杭州乐读科技有限公司运营</view>
+    </view>
+  </view>
+</view>

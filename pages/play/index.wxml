@@ -1,0 +1,9 @@
+<!--pages/play/index.wxml-->
+<view class='test'>
+  <text>musicId</text>
+  <text>{{musicId}}</text>
+  <navigator url='index?musicId=28178007'>跳转</navigator>
+</view>
+<view class='container'>
+
+</view>

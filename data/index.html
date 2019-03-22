@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>用这个页面来看一下哪几个曲子是同一个专辑（虽然没什么卵用吧）F12看log出来的结果</p>
+    <p>因为想要拼出六个歌单或者专辑，所以用这个程序来筛一下。</p>
+    <script src="data.js"></script>
+    <script>
+        let arr = [];
+        for (let i = 0; i < musicData.length; i++) {
+            let arrL = arr.length;
+            for (let j = 0;
+                (j <= arrL) && (j < musicData.length); j++) {
+                if (j != arrL) {
+                    if (musicData[i].album == arr[j].album) {
+                        arr[j].id.push(musicData[i].id);
+                        break;
+                    };
+                } else {
+                    arr.push({
+                        "album": musicData[i].album,
+                        "id": [musicData[i].id],
+                        "cover": musicData[i].cover
+                    });
+                };
+            };
+        };
+        // console.log(arr);
+        let list = [];
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].id.length > 1) { //筛选出长度大于1的专辑，这样可以放在热门推荐里
+                for (let j = arr[i].id.length; j > 0; j--) { //排一下序，让id小的靠前
+                    for (let k = 0; k < j; k++) {
+                        if (arr[i].id[k] > arr[i].id[k + 1]) {
+                            [arr[i].id[k], arr[i].id[k + 1]] = [arr[i].id[k + 1], arr[i].id[k]];
+                        };
+                    };
+                };
+                list.push(arr[i]);
+            };
+        };
+        console.log(list); //热门专辑列表
+    </script>
+</body>
+
+</html>
